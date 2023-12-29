@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3o0as4aqswnt"]
+[gd_scene load_steps=10 format=3 uid="uid://b3o0as4aqswnt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_bmteg"]
 [ext_resource type="PackedScene" uid="uid://deoub3f4yuebi" path="res://arrow.tscn" id="2_di4g5"]
 [ext_resource type="PackedScene" uid="uid://bvdtplj3m7gvg" path="res://player.tscn" id="3_7cisi"]
 [ext_resource type="PackedScene" uid="uid://tcoe64368u55" path="res://hud.tscn" id="3_ioanx"]
 [ext_resource type="AudioStream" uid="uid://b8o8pa755hlsc" path="res://sound/2023-02-16-#29.mp3" id="4_bk6ty"]
+[ext_resource type="Script" path="res://MusicPlayer.gd" id="6_mt427"]
 [ext_resource type="AudioStream" uid="uid://2bqogppu1xu5" path="res://sound/clap_1.wav" id="6_v0t4s"]
 [ext_resource type="AudioStream" uid="uid://b83ojtfeumrr6" path="res://sound/countdown_low.wav" id="7_07lnk"]
 
@@ -13,7 +14,7 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_bmteg")
 arrow_scene = ExtResource("2_di4g5")
-FALL_SPEED = 400.0
+FALL_SPEED = 200.0
 
 [node name="HUD" parent="." instance=ExtResource("3_ioanx")]
 
@@ -29,9 +30,6 @@ one_shot = true
 autostart = true
 
 [node name="EndTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="ArrowTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="LeftArrowPath" type="Path2D" parent="."]
@@ -52,8 +50,9 @@ curve = SubResource("Curve2D_1ygmk")
 [node name="RightArrowSpawnLocation" type="PathFollow2D" parent="RightArrowPath"]
 position = Vector2(390, -60)
 
-[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="Conductor" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_bk6ty")
+script = ExtResource("6_mt427")
 
 [node name="HitPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_v0t4s")
