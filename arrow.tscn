@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://deoub3f4yuebi"]
+
+[ext_resource type="Script" path="res://arrow.gd" id="1_hv3oi"]
+[ext_resource type="Texture2D" uid="uid://bakw4ee057cjt" path="res://art/left_arrow.png" id="2_2di7u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akh1h"]
+size = Vector2(126, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_87aa5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2di7u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Arrow" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 1.66533e-16
+linear_damp_mode = 1
+script = ExtResource("1_hv3oi")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+scale = Vector2(0.938, 0.938)
+shape = SubResource("RectangleShape2D_akh1h")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_87aa5")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

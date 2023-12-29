@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvdtplj3m7gvg"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_wa4lb"]
+[ext_resource type="Texture2D" uid="uid://bakw4ee057cjt" path="res://art/left_arrow.png" id="2_qehyg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r48m"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_wa4lb")
+metadata/_edit_group_ = true
+
+[node name="LeftInputHitbox" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftInputHitbox"]
+position = Vector2(90, 630)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_7r48m")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftInputHitbox/CollisionShape2D"]
+rotation = -1.5708
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("2_qehyg")
+
+[node name="RightInputHitbox" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightInputHitbox"]
+position = Vector2(390, 630)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_7r48m")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightInputHitbox/CollisionShape2D"]
+rotation = 1.5708
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("2_qehyg")
+
+[node name="DownInputHitbox" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownInputHitbox"]
+position = Vector2(240, 630)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_7r48m")
+
+[node name="Sprite2D" type="Sprite2D" parent="DownInputHitbox/CollisionShape2D"]
+rotation = 3.14159
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("2_qehyg")
+
+[connection signal="body_entered" from="LeftInputHitbox" to="." method="_on_left_input_hitbox_body_entered"]
+[connection signal="body_exited" from="LeftInputHitbox" to="." method="_on_left_input_hitbox_body_exited"]
+[connection signal="body_entered" from="RightInputHitbox" to="." method="_on_right_input_hitbox_body_entered"]
+[connection signal="body_entered" from="DownInputHitbox" to="." method="_on_down_input_hitbox_body_entered"]
